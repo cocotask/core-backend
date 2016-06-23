@@ -30,4 +30,20 @@ public class User {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public User() {
+    }
+
+    public User(String userName) {
+        this.userName = userName;
+    }
+
+    @Override
+    public String toString() {
+        super.toString();
+        return "User{" +
+                "uid=" + uid +
+                ", userName='" + userName + '\'' +
+                '}';
+    }
 }

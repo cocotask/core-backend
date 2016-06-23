@@ -1,45 +1,47 @@
 package com.cocotask.core.user.rest;
 
 import com.cocotask.core.user.domain.User;
+import com.cocotask.core.user.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
-import java.util.Collection;
 
 @RestController
 @RequestMapping("/rest")
 public class UserRestController {
     private static final Logger logger = LoggerFactory.getLogger(UserRestController.class);
 
-    /**
-     * 사용자 목록 데이터를 조회한다.
-     * @return
-     */
-    @GetMapping("/users")
-    public Collection<User> getUsers() {
-        logger.debug("call getUsers()");
-
-        return createUsers();
+    public UserRestController(UserService userService) {
+        this.userService = userService;
     }
 
-    public Collection<User> createUsers() {
-        List <User> users = new ArrayList();
-        User antMan = new User();
-        antMan.setUid(1L);
-        antMan.setUserName("antMan");
+    @Autowired
+    private UserService userService;
 
-        User ironMan = new User();
-        ironMan.setUid(2L);
-        ironMan.setUserName("ironMan");
+    @PostMapping("/users")
+    public User addUser(@RequestBody User userInput) {
+        return userService.addUser(userInput);
+    }
 
-        users.add(antMan);
-        users.add(ironMan);
+    @GetMapping("/users")
+    public List<User> readUsers() throws Exception {
+        return userService.getAllUsers();
+    }
 
-        return users;
+    @GetMapping("/users/{userUid}")
+    public User readUser(@PathVariable Long userUid) throws Exception {
+        return userService.getUser(userUid);
+    }
+
+    @PatchMapping("/users/{userUid}")
+    public User modifyUser(@PathVariable Long userUid, @RequestBody User userInput) {
+        return userService.updateUser(userUid, userInput);
+    }
+
+    @DeleteMapping("/users/{userUid}")
+    public void deleteUser(@PathVariable Long userUid) {
+        userService.deleteUser(userUid);
     }
 }
