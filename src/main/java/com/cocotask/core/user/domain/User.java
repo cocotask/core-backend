@@ -13,6 +13,9 @@ public class User {
     private Long uid;
 
     @Column(nullable = false)
+    private String userEmail;
+
+    @Column(nullable = false)
     private String userName;
 
     public Long getUid() {
@@ -21,6 +24,14 @@ public class User {
 
     public void setUid(Long uid) {
         this.uid = uid;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getUserName() {
@@ -40,9 +51,9 @@ public class User {
 
     @Override
     public String toString() {
-        super.toString();
         return "User{" +
                 "uid=" + uid +
+                ", userEmail='" + userEmail + '\'' +
                 ", userName='" + userName + '\'' +
                 '}';
     }
