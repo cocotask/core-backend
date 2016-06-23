@@ -43,6 +43,7 @@ public class UserService {
     public User updateUser(Long userUid, User userInput) {
         User user = userRepository.findOne(userUid);
         user.setUserName(userInput.getUserName());
+        user.setUserEmail(userInput.getUserEmail());
 
         return userRepository.saveAndFlush(user);
     }
