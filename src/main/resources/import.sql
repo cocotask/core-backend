@@ -1,2 +1,2 @@
-INSERT INTO USER (USER_EMAIL, USER_NAME) VALUES ('antman@cocotask.com', 'antman');
-INSERT INTO USER (USER_EMAIL, USER_NAME) VALUES ('captain@cocotask.com', 'captain');
+INSERT INTO USER (USER_EMAIL, USER_NAME, PASSWORD) VALUES ('antman@cocotask.com', 'antman', '1234');
+INSERT INTO USER (USER_EMAIL, USER_NAME, PASSWORD) VALUES ('captain@cocotask.com', 'captain', '1234');

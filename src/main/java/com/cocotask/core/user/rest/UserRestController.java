@@ -35,6 +35,11 @@ public class UserRestController {
         return userService.getUser(userUid);
     }
 
+    @GetMapping("/users/email/{userEmail:.+}")
+    public User readUserByUserEmail(@PathVariable String userEmail) throws Exception {
+        return userService.getUserByUserEmail(userEmail);
+    }
+
     @PatchMapping("/users/{userUid}")
     public User modifyUser(@PathVariable Long userUid, @RequestBody User userInput) {
         return userService.updateUser(userUid, userInput);

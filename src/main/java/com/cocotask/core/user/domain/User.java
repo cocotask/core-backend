@@ -18,6 +18,17 @@ public class User {
     @Column(nullable = false)
     private String userName;
 
+    @Column(nullable = false)
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Long getUid() {
         return uid;
     }
@@ -55,6 +66,7 @@ public class User {
                 "uid=" + uid +
                 ", userEmail='" + userEmail + '\'' +
                 ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -67,6 +67,14 @@ public class UserRestControllerTests {
     }
 
     @Test
+    public void readUserByUserEmail() {
+        ResponseEntity<User> entity = testRestTemplate.getForEntity("http://localhost:8081/rest/users/email/antman@cocotask.com", User.class);
+
+        assertThat(entity.getStatusCode(), is(HttpStatus.OK));
+        assertThat(entity.getBody().getUserName(), is("antman"));
+    }
+
+    @Test
     public void readUserNoData() {
         ResponseEntity<User> entity = testRestTemplate.getForEntity("http://localhost:8081/rest/users/99", User.class);
 
