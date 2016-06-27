@@ -43,4 +43,8 @@ public class LoginService {
 
         return user;
     }
+
+    public void doLogout(HttpSession session) {
+        session.invalidate();
+    }
 }
